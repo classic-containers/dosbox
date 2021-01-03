@@ -11,7 +11,7 @@ a handful of improvements over that project:
 - Use native alsa packages, instead of building them
 - Updated version of dosbox (which is obtained directly through SourceForge)
 - After build, run as non-root user
-- Provide canned dosbox.conf, to mount C and D drives (see below)
+- Provide canned dosbox.conf, to mount C and A drives (see below)
 
 ## Running
 
@@ -65,7 +65,8 @@ a local directory to /var/games/dosbox inside the container.
 
 ```shell
 $ docker run \
-    -v /home/user1/savedata:/var/games/dosbox
+    -v /home/user1/savedata:/var/games/dosbox \
+    classiccontainers/dosbox
 ```
 
 Anything you or the game saves to the A drive should then be available on your
