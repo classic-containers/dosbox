@@ -25,11 +25,16 @@ COPY asound.conf /etc/asound.conf
 # copy built dosbox binary from build container
 COPY --from=dosbox-build /usr/bin/dosbox /usr/bin/dosbox
 
-# install runtime packages and add dosbox user
+# install runtime packages, add dosbox user, create /var/games/dosbox
 RUN apk add --no-cache sdl libxxf86vm libstdc++ libgcc alsa-plugins-pulse && \
-    adduser -D dosbox
+    adduser -D dosbox && \
+    mkdir -p /var/games/dosbox && \
+    chown dosbox:dosbox /var/games/dosbox
 
 USER dosbox
 WORKDIR /home/dosbox
 
-ENTRYPOINT /bin/ash
+# copy default dosbox conf
+COPY --chown=dosbox:dosbox dosbox.conf dosbox.conf
+
+ENTRYPOINT ["dosbox", "-conf", "dosbox.conf"]
