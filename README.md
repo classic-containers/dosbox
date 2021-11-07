@@ -127,3 +127,7 @@ COPY --chown=dosbox:dosbox dosbox_oldgame.conf dosbox_oldgame.conf
 
 CMD ["-conf", "dosbox_oldgame.conf"]
 ```
+
+## Disclaimer
+
+This project is intended for educational purposes only.
